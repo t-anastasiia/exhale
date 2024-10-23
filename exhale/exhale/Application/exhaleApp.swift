@@ -11,7 +11,7 @@ import SwiftUI
 struct exhaleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
