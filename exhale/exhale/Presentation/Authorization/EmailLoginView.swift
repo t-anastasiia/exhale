@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct EmailLoginView: View {
     
@@ -17,8 +18,8 @@ struct EmailLoginView: View {
             Spacer()
             
             topView
-            emailField
-            passwordField
+            EmailTextField(email: $email)
+            PasswordTextField(password: $password)
             
             Button {
                 //
@@ -42,40 +43,12 @@ extension EmailLoginView {
             Text("Вход")
                 .foregroundStyle(Color("text_light"))
                 .font(.system(size: 32))
-        }
-    }
-    
-    var emailField: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Text("Эл. почта")
-                    .foregroundStyle(.textLight)
-                Spacer()
+            
+            Button {
+                print("avatar")
+            } label: {
+                AvatarVIew()
             }
-            TextField("Введите ваш e-mail", text: $email)
-                .frame(height: 75)
-                .padding(.horizontal, 16)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(.textLight)
-                )
-        }
-    }
-    
-    var passwordField: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Text("Пароль")
-                    .foregroundStyle(.textLight)
-                Spacer()
-            }
-            SecureField("Введите ваш пароль", text: $password)
-                .frame(height: 75)
-                .padding(.horizontal, 16)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(.textLight)
-                )
         }
     }
 }
