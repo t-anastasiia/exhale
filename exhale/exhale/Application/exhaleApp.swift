@@ -14,7 +14,7 @@ struct exhaleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(state: appState)
         }
     }
 }

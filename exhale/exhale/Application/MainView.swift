@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    
+    @ObservedObject var state: AppState
     
     var body: some View {
         VStack {
@@ -20,8 +20,4 @@ struct MainView: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    MainView()
 }

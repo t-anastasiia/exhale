@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import Combine
 
 class AppState: ObservableObject {
     @Published var currentUser: User = User()
+    @Published var soundsState = SoundsAppState()
 }
