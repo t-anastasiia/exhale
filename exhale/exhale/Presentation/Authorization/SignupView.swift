@@ -9,37 +9,48 @@ import SwiftUI
 
 struct SignupView: View {
     
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var repeatPassword: String = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        VStack(spacing: 25) {
-            Spacer()
-            Text("Регистрация")
-                .font(.system(size: 32))
-                .foregroundStyle(.textLight)
-            
-            EmailTextField(email: $email)
-            PasswordTextField(password: $password)
-            PasswordTextField(password: $repeatPassword,
-                              title: "Повторите пароль")
-            
-            Button {
-                //
-            } label: {
-                CustomButton(title: "Зарегистрироваться",
-                             verticalPadding: 12)
+        ZStack {
+            VStack(spacing: 25) {
+                Spacer()
+                Text("Регистрация")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.textLight)
+                
+                EmailTextField(email: $viewModel.email)
+                PasswordTextField(password: $viewModel.password)
+                PasswordTextField(password: $viewModel.repeatPassword,
+                                  title: "Повторите пароль")
+                
+                Button {
+                    viewModel.signUp()
+                } label: {
+                    CustomButton(title: "Зарегистрироваться",
+                                 verticalPadding: 12)
+                }
+                .padding(.horizontal, 24)
+                
+                Spacer()
             }
-            .padding(.horizontal, 24)
             
-            Spacer()
+            if viewModel.showError {
+                VStack {
+                    ErrorWindowView(text: viewModel.error)
+                    Spacer()
+                }
+            }
         }
         .padding(.horizontal, 46)
         .background(BackgoundGradientView())
+        .onChange(of: viewModel.error) {
+            viewModel.presentError()
+        }
     }
 }
 
 #Preview {
     SignupView()
+        .environmentObject(AuthViewModel())
 }

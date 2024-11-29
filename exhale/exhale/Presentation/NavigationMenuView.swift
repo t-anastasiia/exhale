@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct NavigationMenuView: View {
+    
+    @ObservedObject var viewModel = AuthViewModel()
+    
     var body: some View {
         VStack(spacing: 0) {
             profileNavView
             
             VStack(spacing: 25) {
+                
                 Spacer()
-                Button {
-                    
+                
+                NavigationLink {
+                    GuidedPracticeView()
                 } label: {
                     CustomButton(title: "Начать тренировку дыхания",
                                  verticalPadding: 30)
@@ -23,19 +28,6 @@ struct NavigationMenuView: View {
                 
                 Spacer()
                 
-                Button {
-                    
-                } label: {
-                    CustomButton(title: "Настройки",
-                                 verticalPadding: 22)
-                }
-                Button {
-                    
-                } label: {
-                    CustomButton(title: "Связаться с тренером",
-                                 verticalPadding: 22)
-                }
-                .padding(.bottom, 45)
             }
             .padding(.horizontal, 46)
             .background(BackgoundGradientView())
@@ -49,15 +41,26 @@ extension NavigationMenuView {
             AvatarVIew(size: 40)
             VStack(spacing: 0) {
                 HStack {
-                    Text("username")
+                    Text("You")
                         .foregroundStyle(.textLight)
                     Spacer()
                 }
                 HStack {
-                    Text("username@gmail.com")
+                    Text(viewModel.session.session?.email ?? "error")
+                        .font(.system(size: 12, weight: .light))
                         .foregroundStyle(.textLight)
                     Spacer()
                 }
+            }
+            Spacer()
+            Button {
+                withAnimation {
+                    viewModel.signOut()
+                }
+            } label: {
+                Image(systemName: "rectangle.portrait.and.arrow.forward")
+                    .foregroundStyle(.bgColorDark)
+                    .font(.system(size: 30, weight: .medium))
             }
         }
         .padding(EdgeInsets(top: 16,

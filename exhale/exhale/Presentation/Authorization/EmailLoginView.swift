@@ -9,31 +9,41 @@ import SwiftUI
 import PhotosUI
 
 struct EmailLoginView: View {
-    
-    @State private var email = ""
-    @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        VStack(spacing: 25) {
-            Spacer()
-            
-            topView
-            EmailTextField(email: $email)
-            PasswordTextField(password: $password)
-            
-            Button {
-                //
-            } label: {
-                CustomButton(title: "Войти",
-                             verticalPadding: 12)
-            }
-            .padding(.horizontal, 69)
+        ZStack {
+            VStack(spacing: 25) {
+                Spacer()
+                
+                topView
+                EmailTextField(email: $viewModel.email)
+                PasswordTextField(password: $viewModel.password )
+                
+                Button {
+                    viewModel.signIn()
+                } label: {
+                    CustomButton(title: "Войти",
+                                 verticalPadding: 12)
+                }
+                .padding(.horizontal, 69)
 
+                
+                Spacer()
+            }
             
-            Spacer()
+            if viewModel.showError {
+                VStack {
+                    ErrorWindowView(text: viewModel.error)
+                    Spacer()
+                }
+            }
         }
         .padding(.horizontal, 46)
         .background(BackgoundGradientView())
+        .onChange(of: viewModel.error) {
+            viewModel.presentError()
+        }
     }
 }
 
@@ -55,4 +65,5 @@ extension EmailLoginView {
 
 #Preview {
     EmailLoginView()
+        .environmentObject(AuthViewModel())
 }

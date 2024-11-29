@@ -8,20 +8,17 @@
 import Foundation
 
 public struct User {
-    public let login: String
-    public let email: String
-    public let trainerEmail: String?
+    public let uid: String
+    public let email: String?
     
-    init(login: String, email: String, trainerEmail: String?) {
-        self.login = login
+    init(uid: String, email: String?) {
+        self.uid = uid
         self.email = email
-        self.trainerEmail = trainerEmail
     }
     
-    //MARK: mock user
-    init() {
-        self.login = "nastya"
-        self.email = "nastaytalmazan@gmail.com"
-        self.trainerEmail = nil
-    }
+//    //MARK: mock user
+//    init() {
+//        self.uid = "1"
+//        self.email = "nastaytalmazan@gmail.com"
+//    }
 }

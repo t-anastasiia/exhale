@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
+    
+    @ObservedObject var viewModel = AuthViewModel()
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 25) {
@@ -17,14 +20,20 @@ struct LoginView: View {
                     .foregroundStyle(Color("text_light"))
                 
                 NavigationLink {
-                    EmailLoginView()
+                    withAnimation {
+                        EmailLoginView()
+                            .environmentObject(viewModel)
+                    }
                 } label: {
                     CustomButton(title: "Вход",
                                  verticalPadding: 26)
                 }
 
                 NavigationLink {
-                    SignupView()
+                    withAnimation {
+                        SignupView()
+                            .environmentObject(viewModel)
+                    }
                 } label: {
                     CustomButton(title: "Создать аккаунт",
                                  verticalPadding: 26)

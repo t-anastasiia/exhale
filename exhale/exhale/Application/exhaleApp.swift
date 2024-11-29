@@ -9,8 +9,7 @@ import SwiftUI
 
 @main
 struct exhaleApp: App {
-    
-    @StateObject private var appState = AppState()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
