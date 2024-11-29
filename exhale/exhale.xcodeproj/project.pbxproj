@@ -16,9 +16,22 @@
 		31655E2C2CC90B3F00AE0232 /* exhale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exhale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		31A7A0F92CFA16BF002C56A0 /* Exceptions for "exhale" folder in "exhale" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 31655E2B2CC90B3F00AE0232 /* exhale */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		31655E2E2CC90B3F00AE0232 /* exhale */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				31A7A0F92CFA16BF002C56A0 /* Exceptions for "exhale" folder in "exhale" target */,
+			);
 			path = exhale;
 			sourceTree = "<group>";
 		};
@@ -270,6 +283,8 @@
 				DEVELOPMENT_TEAM = S5A22857YR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = exhale/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app uses the microphone to detect breathing sounds.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +314,8 @@
 				DEVELOPMENT_TEAM = S5A22857YR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = exhale/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app uses the microphone to detect breathing sounds.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

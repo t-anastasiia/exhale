@@ -62,6 +62,7 @@ class AuthViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             withAnimation {
                 self.showError = false
+                self.error = ""
             }
         }
     }
