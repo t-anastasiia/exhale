@@ -9,15 +9,22 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var state: AppState
+    @ObservedObject var session = SessionStore.shared
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Group {
+            if session.session != nil {
+                NavigationMenuView()
+            } else {
+                LoginView()
+            }
         }
-        .padding()
+        .onAppear(perform: session.listen)
+    }
+}
+
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
     }
 }
