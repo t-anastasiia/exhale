@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/1baae802-55f3-4ce4-b268-ff028de8c363)<a id="readme-top"></a>
+<a id="readme-top"></a>
 
 # exhale
 
