@@ -22,12 +22,22 @@ class SoundDetectionViewModel: ObservableObject {
     @Published var detectionTime: [Date] = []
     @Published var intervals: [Breath] = []
     @Published var currentBreath: String = "Ожидание"
+    
+    private var previousConfidence: Double = 1.0
+    private var isRising: Bool = false
+    var totalDuration: TimeInterval {
+        intervals.reduce(0) { $0 + $1.interval }
+    }
+    var breathCount: Int {
+        intervals.count
+    }
 
     init(config: SoundsConfiguration = SoundsConfiguration(),
          classifier: SystemAudioClassifier = SystemAudioClassifier.singleton) {
         self.appConfig = config
         self.systemAudioClassifier = classifier
     }
+
 
     func startDetection() {
         stopDetection()
@@ -43,13 +53,7 @@ class SoundDetectionViewModel: ObservableObject {
             }, receiveValue: { value in
                 let confidence = value.classification(forIdentifier: self.appConfig.monitoredSounds.labelName)?.confidence ?? 0
                 self.updateNextLineScale(confidence: confidence)
-
-                let isInhale = (self.currentIndex % 2 == 0)
-                print("Detection: Confidence = \(confidence), IsInhale = \(isInhale)")
-
-                if confidence >= 0.72 {
-                    self.addBreath(isInhale: isInhale)
-                }
+                self.detectBreathChange(confidence: confidence)
             })
 
         soundDetectionIsRunning = true
@@ -60,6 +64,26 @@ class SoundDetectionViewModel: ObservableObject {
         )
     }
     
+    private func detectBreathChange(confidence: Double) {
+        print("Detection: Confidence = \(confidence)")
+        print("Current Index Before: \(breathCount)")
+
+        currentIndex = (currentIndex + 1) % lineScales.count
+
+        if confidence > previousConfidence && !isRising {
+            isRising = true
+
+            let isInhale = (breathCount % 2 != 0)
+            addBreath(isInhale: isInhale)
+            
+            print("Minimal point detected. BreathCount: \(breathCount), IsInhale: \(isInhale ? "Вдох" : "Выдох")")
+        } else if confidence < previousConfidence {
+            isRising = false
+        }
+
+        previousConfidence = confidence
+    }
+
     func addBreath(isInhale: Bool) {
         let currentTime = Date()
         detectionTime.append(currentTime)
@@ -68,7 +92,7 @@ class SoundDetectionViewModel: ObservableObject {
             let description = isInhale ? "Вдох" : "Выдох"
             let interval = detectionTime[detectionTime.count - 2].distance(to: currentTime)
             intervals.append(Breath(
-                id: detectionTime.count - 1,
+                id: breathCount,
                 description: description,
                 interval: interval,
                 time: detectionTime.first?.distance(to: currentTime) ?? 0

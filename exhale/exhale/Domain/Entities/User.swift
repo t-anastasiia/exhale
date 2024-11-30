@@ -15,10 +15,5 @@ public struct User {
         self.uid = uid
         self.email = email
     }
-    
-//    //MARK: mock user
-//    init() {
-//        self.uid = "1"
-//        self.email = "nastaytalmazan@gmail.com"
-//    }
+
 }

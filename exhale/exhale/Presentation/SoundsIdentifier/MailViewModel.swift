@@ -11,22 +11,12 @@ import MessageUI
 class MailViewModel: ObservableObject {
     @Published var isShowingMailView: Bool = false
     @Published var mailResult: Result<MFMailComposeResult, Error>? = nil
-    
-    func sendMail(intervals: [Breath]) -> String {
-        var res: String = "<table>"
-        for info in intervals {
-            res += """
-            <tr>
-                <td>\(info.description)</td>
-                <td>interval: \(info.interval.stringFromTimeInterval())</td>
-                <td>detected: \(info.time.stringFromTimeInterval())</td>
-            </tr>
-            """
-        }
-        res += "</table>"
-        return res
+    @Published var message: String = ""
+
+    func prepareMailContent(with intervals: [Breath]) {
+        self.message = BreathReportGenerator.generateHTMLReport(for: intervals)
     }
-    
+
     func canSendMail() -> Bool {
         return MFMailComposeViewController.canSendMail()
     }

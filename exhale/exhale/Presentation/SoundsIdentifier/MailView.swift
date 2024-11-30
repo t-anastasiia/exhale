@@ -5,51 +5,44 @@
 //  Created by Анастасия Талмазан on 2024-11-30.
 //
 
-import MessageUI
 import SwiftUI
+import MessageUI
 
 struct MailView: UIViewControllerRepresentable {
-    @Binding var isShowing: Bool
-    @Binding var result: Result<MFMailComposeResult, Error>?
-    let message: String
+    @ObservedObject var viewModel: MailViewModel
 
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-        @Binding var isShowing: Bool
-        @Binding var result: Result<MFMailComposeResult, Error>?
+        var viewModel: MailViewModel
 
-        init(isShowing: Binding<Bool>,
-             result: Binding<Result<MFMailComposeResult, Error>?>) {
-            _isShowing = isShowing
-            _result = result
+        init(viewModel: MailViewModel) {
+            self.viewModel = viewModel
         }
 
         func mailComposeController(_ controller: MFMailComposeViewController,
                                    didFinishWith result: MFMailComposeResult,
                                    error: Error?) {
             defer {
-                isShowing = false
+                viewModel.isShowingMailView = false
             }
-            guard error == nil else {
-                self.result = .failure(error!)
-                return
+            if let error = error {
+                viewModel.mailResult = .failure(error)
+            } else {
+                viewModel.mailResult = .success(result)
             }
-            self.result = .success(result)
         }
     }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(isShowing: $isShowing,
-                           result: $result)
+        return Coordinator(viewModel: viewModel)
     }
 
-    func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
+    func makeUIViewController(context: Context) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
-        vc.setMessageBody(message, isHTML: true)
+        vc.setMessageBody(viewModel.message, isHTML: true)
         vc.setToRecipients(["nastaytalmazan@gmail.com"])
         vc.mailComposeDelegate = context.coordinator
         return vc
     }
 
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController,
-                                context: UIViewControllerRepresentableContext<MailView>) {}
+    func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) {}
 }

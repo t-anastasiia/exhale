@@ -31,9 +31,23 @@ struct RecordingPracticeView: View {
                 soundDetectionViewModel.stopStartButton()
             } label: {
                 CustomButton(title: soundDetectionViewModel.soundDetectionIsRunning ? "Стоп" : "Старт",
-                             verticalPadding: 54)
+                             verticalPadding: 25)
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 90)
+            
+            VStack(spacing: 8) {
+                Text("Общая длительность: \(soundDetectionViewModel.totalDuration.stringFromTimeInterval())")
+                    .font(.headline)
+                    .foregroundColor(.accent)
+                
+                Text("Количество вдохов/выдохов: \(soundDetectionViewModel.breathCount)")
+                    .font(.subheadline)
+                    .foregroundColor(.textLight)
+            }
+            .padding(EdgeInsets(top: 40,
+                                leading: 32,
+                                bottom: 85,
+                                trailing: 40))
 
         }
         .navigationBarBackButtonHidden()
@@ -43,11 +57,9 @@ struct RecordingPracticeView: View {
                 .presentationDetents([.fraction(0.45)])
                 .presentationBackground(.clear)
         }
-//        .sheet(isPresented: $mailViewModel.isShowingMailView) {
-//            MailView(isShowing: $mailViewModel.isShowingMailView,
-//                     result: $mailViewModel.mailResult,
-//                     message: mailViewModel.sendMail(intervals: breathingViewModel.intervals))
-//        }
+        .sheet(isPresented: $mailViewModel.isShowingMailView) {
+            MailView(viewModel: mailViewModel)
+        }
     }
 }
 
@@ -120,7 +132,12 @@ extension RecordingPracticeView {
                 withAnimation {
                     soundDetectionViewModel.stopDetection()
                 }
-//                mailViewModel.sendMail(intervals: breathingViewModel.intervals)
+                if mailViewModel.canSendMail() {
+                    mailViewModel.prepareMailContent(with: soundDetectionViewModel.intervals)
+                    mailViewModel.isShowingMailView = true
+                } else {
+                    print("Mail services are not available")
+                }
             } label: {
                 CustomButton(title: "Отправить результат",
                              verticalPadding: 18)
