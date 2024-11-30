@@ -19,6 +19,7 @@ struct EmailTextField: View {
                 Spacer()
             }
             TextField("Введите ваш e-mail", text: $email)
+                .textInputAutocapitalization(.never)
                 .frame(height: 75)
                 .padding(.horizontal, 16)
                 .background(

@@ -11,10 +11,6 @@ import SoundAnalysis
 import Combine
 
 final class SystemAudioClassifier: NSObject {
-    enum SystemAudioClassificationError: Error {
-        case audioStreamInterrupted
-        case noMicrophoneAccess
-    }
 
     private let analysisQueue = DispatchQueue(label: "AnalysisQueue")
     private var audioEngine: AVAudioEngine?

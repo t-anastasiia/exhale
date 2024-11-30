@@ -12,25 +12,27 @@ struct NavigationMenuView: View {
     @ObservedObject var viewModel = AuthViewModel()
     
     var body: some View {
-        VStack(spacing: 0) {
-            profileNavView
-            
-            VStack(spacing: 25) {
+        NavigationStack {
+            VStack(spacing: 0) {
+                profileNavView
                 
-                Spacer()
-                
-                NavigationLink {
-                    GuidedPracticeView()
-                } label: {
-                    CustomButton(title: "Начать тренировку дыхания",
-                                 verticalPadding: 30)
+                VStack(spacing: 25) {
+                    
+                    Spacer()
+                    
+                    NavigationLink {
+                        RecordingPracticeView()
+                    } label: {
+                        CustomButton(title: "Начать тренировку дыхания",
+                                     verticalPadding: 30)
+                    }
+                    
+                    Spacer()
+                    
                 }
-                
-                Spacer()
-                
+                .padding(.horizontal, 46)
+                .background(BackgoundGradientView())
             }
-            .padding(.horizontal, 46)
-            .background(BackgoundGradientView())
         }
     }
 }

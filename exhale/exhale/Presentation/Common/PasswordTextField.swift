@@ -21,6 +21,7 @@ struct PasswordTextField: View {
                 Spacer()
             }
             SecureField("Введите ваш пароль", text: $password)
+                .textInputAutocapitalization(.never)
                 .frame(height: 75)
                 .padding(.horizontal, 16)
                 .background(
