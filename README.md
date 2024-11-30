@@ -1,4 +1,4 @@
-<a id="readme-top"></a>
+![image](https://github.com/user-attachments/assets/1baae802-55f3-4ce4-b268-ff028de8c363)<a id="readme-top"></a>
 
 # exhale
 
@@ -31,9 +31,9 @@
 an iOS app, providing an ability to control your breath and meditate
 
 ### Usage
-|<img src="https://github.com/user-attachments/assets/771a8d7b-53d5-4d25-a652-7d51a062ad7c" height="500px"> <p>sdfsfs</p> |<img src="https://github.com/user-attachments/assets/e41f6e57-89e4-45a8-9a6a-969ec63c1656" height="500px">|<img src="https://github.com/user-attachments/assets/40208a9f-19e0-4583-a1c9-4d8e343e4886" height="500px">|<img src="https://github.com/user-attachments/assets/514e9904-b0cb-42ba-99ef-f13a65adfb3e" height="500px">|
+|<img src="https://github.com/user-attachments/assets/771a8d7b-53d5-4d25-a652-7d51a062ad7c" height="500px">|<img src="https://github.com/user-attachments/assets/e41f6e57-89e4-45a8-9a6a-969ec63c1656" height="500px"><p>Login screen</p>|<img src="https://github.com/user-attachments/assets/40208a9f-19e0-4583-a1c9-4d8e343e4886" height="500px"><p>Login error notification</p>|<img src="https://github.com/user-attachments/assets/514e9904-b0cb-42ba-99ef-f13a65adfb3e" height="500px"><p>Creating a new account</p>|
 |---|---|---|---|
-<img src="https://github.com/user-attachments/assets/6c097370-ea07-46c7-8587-94c7c3b2bba9" height="500px">|<img src="https://github.com/user-attachments/assets/fb5156ef-0d3e-4459-abbb-af44df61c473" height="500px">|<img src="https://github.com/user-attachments/assets/1ba83d8c-9ca6-45b8-8a9e-a4e1330f8785" height="500px">|<img src="https://github.com/user-attachments/assets/d3f51f31-7d3f-47d0-a068-f5e546c963bb" height="500px">|
+<img src="https://github.com/user-attachments/assets/6c097370-ea07-46c7-8587-94c7c3b2bba9" height="500px">|<img src="https://github.com/user-attachments/assets/fb5156ef-0d3e-4459-abbb-af44df61c473" height="500px"><p>Training</p>|<img src="https://github.com/user-attachments/assets/1ba83d8c-9ca6-45b8-8a9e-a4e1330f8785" height="500px">|<img src="https://github.com/user-attachments/assets/d3f51f31-7d3f-47d0-a068-f5e546c963bb" height="500px">|
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built with
@@ -76,9 +76,8 @@ an iOS app, providing an ability to control your breath and meditate
 
 <!-- CONTACTS -->
 ## Contacts
-Contact me:
-* [link1](link1)
-* [link2](link2)
+* [@nas_www_ay](https://t.me/nas_www_ay)
+* [@Gingiy](https://t.me/Gingiy)
 
 Progect link - [https://github.com/t-anastasiia/exhale][project-url]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
